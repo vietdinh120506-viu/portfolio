@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;500;600;700;800;900&display=swap&subset=vietnamese');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--foreground-rgb: 255, 255, 255;
+	--background-start-rgb: 18, 9, 33;
+	--background-end-rgb: 18, 9, 33;
+
+	/* Cartoon theme fonts */
+	--font-heading: 'Baloo 2', cursive, sans-serif;
+	--font-body: 'Nunito', sans-serif;
+}
+
+@layer base {
+	:root {
+		/* Deep Purple Cartoon Background */
+		--background: 268 45% 9%;
+		--foreground: 0 0% 98%;
+
+		/* Card background: Soft plum / dark violet */
+		--card: 268 36% 14%;
+		--card-foreground: 0 0% 98%;
+
+		--popover: 268 36% 14%;
+		--popover-foreground: 0 0% 98%;
+
+		/* Candy Pink (Hồng kẹo) */
+		--primary: 338 92% 67%;
+		--primary-foreground: 0 0% 100%;
+
+		/* Mint Green (Xanh mint) */
+		--secondary: 160 84% 53%;
+		--secondary-foreground: 268 50% 10%;
+
+		/* Lemon Yellow (Vàng chanh) */
+		--accent: 48 98% 58%;
+		--accent-foreground: 268 50% 10%;
+
+		/* Peach Orange (Cam đào) */
+		--peach: 20 95% 65%;
+
+		--muted: 268 25% 20%;
+		--muted-foreground: 268 15% 72%;
+
+		--destructive: 0 84% 60%;
+		--destructive-foreground: 0 0% 98%;
+
+		--border: 268 30% 25%;
+		--input: 268 30% 20%;
+		--ring: 338 92% 67%;
+
+		--chart-1: 338 92% 67%; /* Candy Pink */
+		--chart-2: 48 98% 58%;  /* Lemon Yellow */
+		--chart-3: 160 84% 53%; /* Mint Green */
+		--chart-4: 20 95% 65%;  /* Peach Orange */
+		--chart-5: 280 85% 70%; /* Soft Violet */
+
+		/* Strong rounded corners */
+		--radius: 1.25rem;
+	}
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+
+	body {
+		@apply bg-background text-foreground;
+		font-family: var(--font-body);
+		font-feature-settings: "rlig" 1, "calt" 1;
+		overflow-x: hidden;
+	}
+
+	h1, h2, h3, h4, h5, h6, .font-heading {
+		font-family: var(--font-heading);
+		letter-spacing: 0.02em;
+	}
+}
+
+@layer components {
+	.container {
+		@apply px-4 md:px-6 lg:px-8 mx-auto max-w-[1400px];
+	}
+}
+
+/* Cartoon Sticker Shadows & Button Interactions */
+.cartoon-btn {
+	box-shadow: 4px 4px 0px #090312;
+	border: 2px solid #090312;
+	transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cartoon-btn:hover {
+	transform: translateY(-2.5px) scale(1.025);
+	box-shadow: 6px 6px 0px #090312;
+}
+
+.cartoon-btn:active {
+	transform: translate(2px, 2px) scale(0.98);
+	box-shadow: 1px 1px 0px #090312;
+}
+
+.cartoon-card-shadow {
+	box-shadow: 5px 5px 0px rgba(9, 3, 18, 0.7);
+	border: 2px solid hsl(var(--border));
+	transition: all 0.25s ease-out;
+}
+
+.cartoon-card-shadow:hover {
+	transform: translateY(-4px);
+	box-shadow: 7px 7px 0px rgba(9, 3, 18, 0.9);
+	border-color: hsl(var(--primary) / 0.5);
+}
+
+/* Dark cartoon card for readable text over background decorations */
+.text-card {
+	position: relative;
+	z-index: 10;
+	background-color: rgba(20, 12, 36, 0.9);
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+	border-radius: 24px;
+	border: 2px solid rgba(255, 255, 255, 0.12);
+	box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.5);
+	padding: 1.5rem; /* 24px */
+	transition: all 0.25s ease-out;
+}
+
+@media (min-width: 640px) {
+	.text-card {
+		padding: 2rem; /* 32px */
+	}
+}
+
+.text-card:hover {
+	border-color: rgba(255, 255, 255, 0.22);
+	box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.6);
+	transform: translateY(-2px);
+}
+
+.cartoon-input-shadow {
+	box-shadow: 3px 3px 0px rgba(9, 3, 18, 0.6);
+	transition: all 0.2s ease;
+}
+
+.cartoon-input-shadow:focus {
+	box-shadow: 4px 4px 0px hsl(var(--primary));
+	transform: translateY(-1px);
+}
+
+/* Wiggle animation for Contact Me button */
+@keyframes wiggle {
+	0%, 100% {
+		transform: rotate(0deg) scale(1);
+	}
+	20% {
+		transform: rotate(-5deg) scale(1.04);
+	}
+	40% {
+		transform: rotate(5deg) scale(1.04);
+	}
+	60% {
+		transform: rotate(-3deg) scale(1.02);
+	}
+	80% {
+		transform: rotate(3deg) scale(1.02);
+	}
+}
+
+.contact-wiggle:hover {
+	animation: wiggle 0.45s ease-in-out infinite;
+}
+
+@keyframes iconBounce {
+	0%, 100% {
+		transform: translateY(0) rotate(0deg) scale(1);
+	}
+	50% {
+		transform: translateY(-2px) rotate(8deg) scale(1.12);
+	}
+}
+
+.contact-wiggle:hover .contact-icon-bounce {
+	animation: iconBounce 0.35s ease-in-out infinite;
+}
+
+/* Hand waving animation */
+@keyframes waveHand {
+	0%, 100% {
+		transform: rotate(0deg);
+	}
+	20%, 60% {
+		transform: rotate(16deg);
+	}
+	40%, 80% {
+		transform: rotate(-14deg);
+	}
+}
+
+.animate-wave {
+	display: inline-block;
+	transform-origin: 70% 70%;
+	animation: waveHand 2s ease-in-out infinite;
+}
+
+/* Gentle bounce animation */
+@keyframes bounceGentle {
+	0%, 100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-8px);
+	}
+}
+
+.animate-bounce-gentle {
+	animation: bounceGentle 2.5s ease-in-out infinite;
+}
+
+/* Floating decorations animation */
+@keyframes floatSlow {
+	0%, 100% {
+		transform: translateY(0px) rotate(0deg);
+	}
+	50% {
+		transform: translateY(-18px) rotate(6deg);
+	}
+}
+
+@keyframes floatReverse {
+	0%, 100% {
+		transform: translateY(0px) rotate(0deg);
+	}
+	50% {
+		transform: translateY(18px) rotate(-6deg);
+	}
+}
+
+@keyframes pulseSoft {
+	0%, 100% {
+		transform: scale(1);
+		opacity: 0.8;
+	}
+	50% {
+		transform: scale(1.15);
+		opacity: 1;
+	}
+}
+
+.animate-float-1 {
+	animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-float-2 {
+	animation: floatReverse 7s ease-in-out infinite;
+}
+
+.animate-float-3 {
+	animation: floatSlow 8.5s ease-in-out infinite 1s;
+}
+
+.animate-pulse-soft {
+	animation: pulseSoft 3.5s ease-in-out infinite;
+}
+
+.skill-bar {
+	@apply relative h-3 bg-muted rounded-full overflow-hidden border border-border/50;
+	box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.skill-progress {
+	@apply absolute top-0 left-0 h-full rounded-full transition-all duration-1000;
+	background: linear-gradient(90deg, #ff599c, #ffd02b, #2ee69c);
+}
+
+.nav-link {
+	@apply relative py-1 px-3 rounded-full transition-all duration-200 font-semibold;
+}
+
+.nav-link:hover {
+	@apply bg-primary/20 text-primary;
+}
+
+.nav-link.active {
+	@apply bg-primary text-primary-foreground shadow-[2px_2px_0px_#090312];
+}
+
+.card-gradient {
+	@apply relative overflow-hidden;
+}
+
+.card-gradient::before {
+	content: '';
+	@apply absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-40 transition-opacity duration-300 pointer-events-none;
+}
+
+.card-gradient:hover::before {
+	@apply opacity-80;
+}
+
+/* Candy pop text gradient: Pink -> Lemon Yellow -> Mint Green */
+.text-gradient {
+	@apply bg-clip-text text-transparent bg-gradient-to-r from-[#ff599c] via-[#ffd02b] to-[#2ee69c];
+	filter: drop-shadow(0 2px 8px rgba(255, 89, 156, 0.25));
+}
+
+.section-title {
+	@apply text-3xl md:text-4xl font-bold mb-3 inline-block font-heading;
+}
+
+.section-title::after {
+	content: '';
+	@apply block h-2 w-20 bg-gradient-to-r from-primary via-accent to-secondary mt-2 rounded-full;
+	box-shadow: 2px 2px 0px #090312;
+}
+
+/* Accessibility: Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	::before,
+	::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
